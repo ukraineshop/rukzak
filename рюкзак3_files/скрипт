@@ -1,0 +1,60 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('order_form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Запобігаємо стандартній відправці форми
+         
+            // Отримуємо значення полів форми
+            var name = document.querySelector('input[name="name"]').value;
+            var phone = document.querySelector('input[name="phone"]').value;
+            var color= document.querySelector('input[name="color"]').value;
+            
+            
+         
+            // Формуємо повідомлення
+            var message = `Нове замовлення:\nІм'я та прізвище: ${name} \nТелефон: ${phone}:  \nКолір ${color}`;
+         
+            // Ваш токен та ID чату
+            var token = ' 7369491953:AAFdiIVppdTIt9CcNo0AWHRmgPMAnVFjEeg';
+            var chatId =  1209136723; // Замініть YOUR_CHAT_ID на ваш реальний ID чату
+         
+            // Відправляємо повідомлення через Telegram API
+            fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: "Markdown"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Після успішної відправки, одразу перенаправляємо на сторінку "Дякую"
+                window.location.href = "./рюкзак3_files/thank_you_page.html"; 
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Помилка при відправленні замовлення.');
+            });
+        });
+    });
+</script>
+
+     <form action="./рюкзак3_files/thank_you_page.html" class="main-order-form m1-form" id="order_form" method="POST">
+      <input type="text" name="name" placeholder="Введіть ваше ім&#39;я" autocomplete="off" required="">
+      <input type="tel" name="phone" placeholder="Ваш номер телефона" required="required" inputmode="tel">
+      <select name="product" required="" class="formSelect">
+          <option value="1">Обрати колір</option>
+          <option value="1">Чорний</option>
+          <option value="2">Салатовий</option>
+          <option value="3">Сірий</option>
+          <option value="3">Рожевий</option>
+      </select>
+      <button class="button-m" id="sub0"> замовити зараз
+      </button>
+     
+      
+     </form>
