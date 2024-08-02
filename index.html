@@ -674,59 +674,8 @@
   <script src="./рюкзак3_files/jquery.min.js.завантаження"></script>
 <script src="./рюкзак3_files/jquery.inputmask.min.js.завантаження"></script>
  
-<script>
-  window.getCookie = function (name) {
-          var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-          if (match) return match[2];
-      }
-      $(document).ready(function () {
-          $('[name="phone"]').inputmask({
-              keepStatic: false,
-              clearIncomplete: true,
-              definitions: {
-                  'z': {validator: '0'},
-                  't': {validator: '3'}
-              },
-              mask: [
-                  '+380 5z 999-99-99',
-                  '+380 63 999-99-99',
-                  '+380 66 999-99-99',
-                  '+380 67 999-99-99',
-                  '+380 68 999-99-99',
-                  '+380 7t 999-99-99',
-                  '+380 75 999-99-99',
-                  '+380 77 999-99-99',
-                  '+380 89 999-99-99',
-                  '+380 \\91 999-99-99',
-                  '+380 \\92 999-99-99',
-                  '+380 \\93 999-99-99',
-                  '+380 \\94 999-99-99',
-                  '+380 \\95 999-99-99',
-                  '+380 \\96 999-99-99',
-                  '+380 \\97 999-99-99',
-                  '+380 \\98 999-99-99',
-                  '+380 \\9\\9 999-99-99'
-              ]
-          }).attr('required', true);
-          // Assuming your form has an id "myForm"
-          $('form').on('submit', function (e) {
-              // Prevent the form from submitting
-              e.preventDefault();
 
-              // Check if the phone input is complete
-              var phoneInput = $(this).find('[name="phone"]');
-              if (phoneInput.inputmask("isComplete")) {
-                  // If the phone input is complete, submit the form
-                  $(this).children(".button").hide();
-                  $('.img-loading', this).css('display', 'block');
-                  this.submit();
-              } else {
-                  // If the phone input is incomplete, show an error message
-                  alert("Введіть повний номер телефону.");
-              }
-          });
-      });
-  </script>
+           
 
   
   
